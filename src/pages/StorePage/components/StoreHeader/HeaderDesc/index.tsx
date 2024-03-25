@@ -35,7 +35,9 @@ export const HeaderDesc = ({
 
   return (
     <div className={s.desc_wrapper}>
-      <p className={s.header_desc}>{description} </p>
+      <p className={s.header_desc}>
+        {width > 1024 ? `${description}${'\u00A0'.repeat(20)}` : description}
+      </p>
       {shopDescription.length > descMaxLength && (
         <button
           type='button'
