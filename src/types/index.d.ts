@@ -436,3 +436,28 @@ export interface ToastProps {
   isShow: boolean;
   handleShowMessage: (type: boolean) => void;
 }
+
+export interface MyPurchasesProps {
+  orderNumber: number;
+  date: string;
+  status: string;
+  seller: {
+    name: string;
+    photo: string;
+  };
+  items: {
+    itemName: string;
+    photo: string;
+    price: number;
+    quantity: number;
+  }[];
+}
+
+export interface OrderDeliveryInfoProps {
+  name: string;
+  phone: string;
+  city: string;
+  post: string;
+  payment?: boolean;
+  icons?: boolean;
+}

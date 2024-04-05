@@ -3,13 +3,16 @@
 .delivery {
   grid-area: delivery;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 1fr;
   align-items: start;
   gap: 0.313rem;
   border-radius: 0.25rem;
   background: $azure;
   padding: toRem(16);
-  margin-top: toRem(16);
+
+  &_payment_active {
+    grid-template-columns: repeat(2, 1fr);
+  }
 
   @media (max-width: $desktop) {
     display: grid;

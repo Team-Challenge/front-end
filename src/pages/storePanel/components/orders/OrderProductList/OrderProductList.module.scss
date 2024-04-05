@@ -90,13 +90,12 @@
     grid-area: price;
     display: flex;
     flex-direction: column;
-    justify-self: center;
+    justify-self: end;
     gap: 0.25rem;
     color: $grey;
     font-size: 0.75rem;
     font-weight: 300;
     line-height: 1rem;
-    margin-left: toRem(16);
 
     span {
       color: $text-color;

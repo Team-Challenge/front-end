@@ -5,9 +5,9 @@ import { useAppDispatch, useAppSelector } from '@/hooks/reduxHook';
 import { openModal } from '@/store/modalSlice';
 import { Tooltip } from '@/components/UI';
 import { Icon } from '@iconify/react';
+import { OrderDeliveryInfo } from '@/components/UI/OrderDeliveryInfo';
 import { OrderProductList } from '../OrderProductList';
 import { ParcelNumberForm } from '../ParcelNumberForm';
-import { OrderDeliveryInfo } from '../OrderDeliveryInfo';
 import s from './OrdersList.module.scss';
 
 export const OrderItemMobile = ({
@@ -80,7 +80,16 @@ export const OrderItemMobile = ({
         {isOpen && (
           <>
             <OrderProductList />
-            <OrderDeliveryInfo />
+            <div className={s.delivery_wrap}>
+              <OrderDeliveryInfo
+                name='Ірина Фаріон'
+                phone='+380639379992'
+                city='Львів'
+                post='Нова пошта відділення №1'
+                payment
+                icons
+              />
+            </div>
             <button type='button' className={s.order_cancel}>
               <Icon icon='solar:close-circle-outline' />
               Скасувати замовлення

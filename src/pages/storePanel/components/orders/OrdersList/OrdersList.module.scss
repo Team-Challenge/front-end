@@ -50,7 +50,7 @@
       right: -69px;
 
       &::before {
-        content: "";
+        content: '';
         position: absolute;
         top: 99%;
         right: 22%;
@@ -101,7 +101,7 @@
     display: grid;
     grid-template-columns: minmax(300px, 353px) 498px;
     grid-template-areas:
-      'products delivery'
+      'products deliveryInfo'
       'products cancel';
     align-items: start;
     justify-content: space-between;
@@ -119,7 +119,6 @@
   border-radius: 0.25rem;
   padding: toRem(10) toRem(12);
 
-  
   &_title,
   &_wrap {
     p {
@@ -218,7 +217,7 @@
       }
 
       &::before {
-        content: "";
+        content: '';
         position: absolute;
         top: -15%;
         right: 50%;
@@ -242,7 +241,7 @@
 }
 
 .canceled {
-  color: $cancelled;
+  color: $canceled;
 }
 
 .default {
@@ -257,7 +256,7 @@
   font-weight: 700;
   line-height: 1.25rem;
   letter-spacing: 0.28px;
-  color: $cancelled;
+  color: $canceled;
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -267,4 +266,9 @@
     justify-content: flex-end;
     margin-top: toRem(18);
   }
+}
+
+.delivery_wrap {
+  grid-area: deliveryInfo;
+  margin-top: toRem(16);
 }

@@ -1,0 +1,29 @@
+@import '@/styles/index.scss';
+
+.marker {
+  grid-area: marker;
+  display: inline-block;
+  height: 100%;
+  width: 2px;
+  border-radius: 1px;
+}
+
+.active {
+  background-color: $active;
+}
+
+.completed {
+  background-color: $completed;
+}
+
+.delivery {
+  background-color: $delivery;
+}
+
+.canceled {
+  background-color: $canceled;
+}
+
+.default {
+  background-color: $text-color;
+}

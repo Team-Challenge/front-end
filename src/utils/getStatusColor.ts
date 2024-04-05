@@ -7,7 +7,7 @@ export const getStatusColor = (status: string, style: CSSModuleClasses) => {
     case 'В дорозі':
       return style.delivery;
     case 'Скасовано':
-      return style.cancelled;
+      return style.canceled;
     default:
       return style.default;
   }

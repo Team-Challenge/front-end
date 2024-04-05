@@ -1,0 +1,202 @@
+@import '@/styles/index.scss';
+
+.active {
+  color: $active;
+}
+
+.completed {
+  color: $completed;
+}
+
+.delivery {
+  color: $delivery;
+}
+
+.canceled {
+  color: $canceled;
+}
+
+.default {
+  color: $text-color;
+}
+
+.status_mainWrapper {
+  grid-area: status;
+
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-areas:
+    'status text'
+    'status text'
+    'status text';
+
+  column-gap: 0.5rem;
+
+  @media (min-width: 734px) {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-areas:
+      'status status status'
+      'text text text';
+    max-width: 21.625rem;
+    row-gap: 0.25rem;
+  }
+}
+
+.status {
+  grid-area: status;
+
+  &_icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    width: 2rem;
+    height: 2rem;
+    background-color: #f0f6f7;
+    color: #c1dcde;
+
+    svg {
+      width: 1rem;
+      height: 1rem;
+
+      @media (min-width: 734px) {
+        width: 1.125rem;
+        height: 1.125rem;
+      }
+    }
+
+    @media (min-width: 734px) {
+      width: 1.75rem;
+      height: 1.75rem;
+    }
+  }
+
+  &_wrap {
+    @media (min-width: 734px) {
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  @media (min-width: 734px) {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.status_item:not(:last-child) .status_wrap::after {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  content: '';
+  height: 100%;
+  width: 2px;
+  background-color: #f0f6f7;
+
+  height: 1.75rem;
+
+  @media (min-width: 734px) {
+    margin-left: 0;
+    margin-right: 0;
+
+    flex-grow: 1;
+    height: 2px;
+  }
+}
+
+.status_text_short {
+  @media (min-width: 734px) {
+    width: 5.625rem;
+  }
+}
+
+.status_text_wrapper {
+  grid-area: text;
+
+  display: grid;
+
+  grid-template-rows: repeat(3, 32px);
+  align-content: space-between;
+
+  color: #757575;
+
+  // color: #333;
+  font-size: 0.75rem;
+  font-weight: 400;
+  line-height: 1.125rem;
+  letter-spacing: 0.0075rem;
+
+  @media (min-width: 734px) {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: unset;
+    align-content: unset;
+  }
+}
+
+.status_text_item {
+  @media (max-width: 734px) {
+    display: flex;
+    align-items: center;
+  }
+}
+
+.status.active {
+  .status_item:first-child {
+    .status_icon {
+      background-color: $active;
+      color: white;
+    }
+  }
+}
+
+.status_text_wrapper.active {
+  .status_text_item:first-child {
+    color: #333;
+  }
+}
+
+.status.delivery {
+  .status_item:not(:last-child) .status_icon {
+    background-color: $delivery;
+    color: white;
+  }
+
+  .status_item:first-child .status_wrap::after {
+    background-color: $delivery;
+  }
+}
+
+.status_text_wrapper.delivery {
+  .status_text_item:not(:last-child) {
+    color: #333;
+  }
+}
+
+.status.completed {
+  .status_icon {
+    background-color: $completed;
+    color: white;
+  }
+
+  .status_wrap::after {
+    background-color: $completed;
+  }
+}
+
+.status_text_wrapper.completed {
+  .status_text_item {
+    color: #333;
+  }
+}
+
+.status.canceled {
+  .status_icon {
+    background-color: $canceled;
+    color: white;
+  }
+
+  .status_wrap::after {
+    background-color: $canceled;
+  }
+}
