@@ -23,11 +23,13 @@
 .header {
   display: grid;
   grid-template-columns: minmax(5.5rem, auto) 1fr minmax(5.5rem, auto);
+  grid-template-rows: minmax(3rem, auto) minmax(11.25rem, auto);
   grid-template-areas:
     'banner banner banner'
     '. details contactsWrapper';
 
   @media (max-width: $mobile) {
+    grid-template-rows: none;
     grid-template-areas:
       'banner banner banner'
       'details details details';

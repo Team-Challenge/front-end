@@ -1,0 +1,283 @@
+@import '@/styles/index.scss';
+
+.order {
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1rem;
+  letter-spacing: 0.28px;
+  padding: 0.75rem;
+  border-radius: 4px;
+  border: 1px solid #f1f1f1;
+  min-width: 20rem;
+
+  @media (min-width: 734px) {
+    padding: 0.69rem 1.25rem;
+    max-width: 56rem;
+    min-height: 4.25rem;
+  }
+
+  &:not(:last-child) {
+    margin-bottom: 0.75rem;
+
+    @media (min-width: 734px) {
+      margin-bottom: 1rem;
+    }
+  }
+
+  &_number {
+    font-size: 0.8125rem;
+    line-height: 1rem;
+  }
+
+  &_info {
+    grid-area: orderInfo;
+
+    display: grid;
+
+    align-content: center;
+
+    grid-template-columns: auto 1fr;
+    align-items: center;
+
+    column-gap: 0.5rem;
+    row-gap: 0.125rem;
+
+    @media (min-width: 734px) {
+      row-gap: 0.25rem;
+      min-height: 2.875rem;
+    }
+  }
+
+  &_date {
+    color: #757575;
+    font-size: 0.75rem;
+    font-weight: 300;
+    line-height: 1rem;
+  }
+
+  &_status_text {
+    grid-area: 2 / 1 / 3 / 3;
+    font-size: 0.875rem;
+    font-weight: 500;
+    line-height: 1rem;
+    letter-spacing: 0.14px;
+  }
+
+  &_price {
+    grid-area: totalPrice;
+    align-self: start;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+
+    font-family: 'Craftwork Grotesk';
+    font-size: toRem(14);
+    font-weight: 600;
+
+    line-height: 1rem;
+    letter-spacing: toRem(0.42);
+
+    @media (min-width: 734px) {
+      align-self: unset;
+    }
+
+    span {
+      font-family: Montserrat;
+      font-size: 12px;
+      font-weight: 300;
+      line-height: 1rem;
+      color: $grey;
+    }
+  }
+
+  &_button {
+    display: flex;
+    align-items: center;
+
+    svg {
+      color: $main-btn-color;
+    }
+  }
+}
+
+.order_button_open {
+  grid-area: button;
+  align-self: center;
+  justify-self: end;
+  width: 1.25rem;
+  height: 1.25rem;
+
+  @media (min-width: 734px) {
+    justify-self: center;
+  }
+
+  svg {
+    color: $grey;
+  }
+}
+
+.details {
+  display: grid;
+  grid-template-columns: 0.625rem 1fr auto;
+
+  row-gap: 0.5rem;
+
+  grid-template-areas:
+    'marker orderInfo button'
+    '. product totalPrice';
+  align-items: center;
+
+  @media (min-width: 734px) {
+    grid-template-columns:
+      0.625rem minmax(16rem, 23.375rem) minmax(9.25rem, 19rem) minmax(
+        auto,
+        9.625rem
+      )
+      auto;
+
+    grid-template-areas: 'marker orderInfo product totalPrice button';
+  }
+
+  &_isOpen {
+    grid-template-areas:
+      'marker orderInfo  button'
+      '. seller .'
+      'decorLine decorLine decorLine'
+      '. productsList productsList'
+      '. status status'
+      '. deliveryInfo deliveryInfo';
+
+    grid-row-gap: 0.75rem;
+
+    @media (min-width: 734px) {
+      grid-template-areas:
+        'marker orderInfo seller . button'
+        'decorLine decorLine decorLine decorLine decorLine'
+        '. status productsList productsList .'
+        '. deliveryInfo productsList productsList .';
+    }
+
+    &::after {
+      grid-area: decorLine;
+      content: '';
+      display: block;
+      width: 100%;
+      height: 0.125rem;
+      background-color: #f1f1f1;
+      border-radius: 1px;
+    }
+  }
+}
+
+.img_thumb {
+  width: 5.5rem;
+  height: 4rem;
+
+  overflow: hidden;
+  border-radius: 0.125rem;
+
+  @media (min-width: 734px) {
+    width: 4rem;
+    height: 2.8rem;
+  }
+
+  img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+}
+
+.img_wrapper {
+  grid-area: product;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+
+  color: $grey;
+  font-size: 0.75rem;
+  font-weight: 300;
+  line-height: 1rem;
+}
+
+.seller {
+  grid-area: seller;
+  display: flex;
+  align-items: center;
+
+  width: 100%;
+
+  margin-bottom: 4px;
+
+  color: #1a7171;
+
+  font-family: 'Craftwork Grotesk';
+  font-size: 13px;
+
+  font-weight: 600;
+  line-height: 1rem; /* 123.077% */
+  letter-spacing: 0.13px;
+
+  & p:first-child {
+    margin-right: 8px;
+
+    color: #333;
+
+    font-size: 0.813rem;
+
+    font-weight: 500;
+    line-height: 1rem; /* 123.077% */
+  }
+
+  &_photo_wrapper {
+    height: 1.25rem;
+    width: 1.25rem;
+
+    margin-right: 4px;
+
+    img {
+      width: 100%;
+      height: 100%;
+      display: block;
+
+      object-fit: contain;
+    }
+  }
+}
+
+.active {
+  color: $active;
+}
+
+.completed {
+  color: $completed;
+}
+
+.delivery {
+  color: $delivery;
+}
+
+.canceled {
+  color: $canceled;
+}
+
+.default {
+  color: $text-color;
+}
+
+.product_list_wrap {
+  grid-area: productsList;
+
+  @media (min-width: 734px) {
+    max-width: 22.5rem;
+  }
+}
+
+.delivery_wrap {
+  grid-area: deliveryInfo;
+
+  @media (min-width: 734px) {
+    max-width: 14.25rem;
+  }
+}

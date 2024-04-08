@@ -1,6 +1,7 @@
 @import '@/styles/index.scss';
 
-.order {
+.purchases {
+  overflow: hidden;
   &_title {
     margin-bottom: 1.5rem;
   }
@@ -24,5 +25,13 @@
   .active {
     background: $green;
     color: $white;
+  }
+
+  &_table {
+    margin-top: 0.75rem;
+
+    @media (min-width: 734px) {
+      margin-top: 1rem;
+    }
   }
 }
