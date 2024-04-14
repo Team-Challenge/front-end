@@ -1,0 +1,41 @@
+@import '@/styles/index.scss';
+
+.accordion {
+  border-top: 1px solid $main-border-color;
+
+  &_button {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: $main-text-color;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.25rem;
+    letter-spacing: 0.01rem;
+    padding: 1rem;
+  }
+}
+
+.arrow {
+  width: 1.25rem;
+  height: 1.25rem;
+  color: $secondary-text-color;
+  transition: transform 0.4s;
+}
+
+.inactive {
+  transform: rotate(0deg);
+}
+
+.active {
+  transform: rotate(180deg);
+}
+
+.content {
+  height: 0;
+  overflow: hidden;
+  transition: height 0.4s ease;
+  padding: 0 1rem;
+}

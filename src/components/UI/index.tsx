@@ -15,6 +15,7 @@ import { EmptyContentPage } from './EmptyContentPage';
 import { Pagination } from './Pagination';
 import { Toast } from './Toast';
 import { RatingWithReviewCount } from './RatingWithReviewCount';
+import { Accordion } from './Accordion';
 
 export {
   ButtonUI,
@@ -34,4 +35,5 @@ export {
   Pagination,
   Toast,
   RatingWithReviewCount,
+  Accordion,
 };
