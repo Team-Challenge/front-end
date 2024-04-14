@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-shadow */
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Icon } from '@iconify/react';
@@ -14,7 +15,7 @@ export const BurgerMenu = () => {
   const dispatch = useAppDispatch();
   const { width } = useWindowDimensions();
   const { isAuth } = useAppSelector((state) => state.auth);
-  const { hasStore } = useAppSelector((state) => state.storeProfile);
+  const { hasStore } = useAppSelector((state) => state.userProfile);
   const [selectedCategory, setSelectedCategory] = useState<number | null>(null);
 
   const handleSelectedCategory = (id: number) => {
@@ -74,9 +75,9 @@ export const BurgerMenu = () => {
                     </Link>
                   </li>
                   {subcategories &&
-                    subcategories.map((subcategory) => (
-                      <li key={subcategory} className={s.subcategory_link}>
-                        <Link to='/'>{subcategory}</Link>
+                    subcategories.map(({ id, label }) => (
+                      <li key={id} className={s.subcategory_link}>
+                        <Link to='/'>{label}</Link>
                       </li>
                     ))}
                 </ul>

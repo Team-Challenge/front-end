@@ -6,11 +6,9 @@ export const ProductDescription = () => {
   const { product } = useAppSelector((state) => state.product);
   const description = product.product_description;
 
-  return (
-    description && (
-      <Accordion title='Опис від майстра' className={s.description}>
-        <p className={s.description_text}>{description}</p>
-      </Accordion>
-    )
-  );
+  return description ? (
+    <Accordion title='Опис від майстра' className={s.description}>
+      <p className={s.description_text}>{description}</p>
+    </Accordion>
+  ) : null;
 };

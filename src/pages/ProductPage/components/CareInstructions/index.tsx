@@ -6,11 +6,9 @@ export const CareInstructions = () => {
   const { product } = useAppSelector((state) => state.product);
   const careInstructions = product.product_characteristic.care_instructions;
 
-  return (
-    careInstructions && (
-      <Accordion title='Інструкція по догляду'>
-        <p className={s.instruction_text}>{careInstructions}</p>
-      </Accordion>
-    )
-  );
+  return careInstructions ? (
+    <Accordion title='Інструкція по догляду'>
+      <p className={s.instruction_text}>{careInstructions}</p>
+    </Accordion>
+  ) : null;
 };

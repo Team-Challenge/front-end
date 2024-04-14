@@ -15,6 +15,11 @@ import { Rate } from 'antd';
 import { RatingStarIcon } from '@/components/icons/RatingStarIcon';
 import s from './Reviews.module.scss';
 
+interface AddReviewsForm {
+  rating: number;
+  description: string;
+}
+
 export const Reviews = () => {
   const { width } = useWindowDimensions();
   const dispatch = useAppDispatch();
@@ -34,7 +39,7 @@ export const Reviews = () => {
     dispatch(openModal('addNewReview'));
   };
 
-  const onSubmit = (data) => {
+  const onSubmit = (data: AddReviewsForm) => {
     console.log(data);
     reset();
     dispatch(closeModal('addNewReview'));
