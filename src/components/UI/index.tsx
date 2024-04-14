@@ -14,6 +14,7 @@ import { ButtonsBar } from './ButtonsBar';
 import { EmptyContentPage } from './EmptyContentPage';
 import { Pagination } from './Pagination';
 import { Toast } from './Toast';
+import { RatingWithReviewCount } from './RatingWithReviewCount';
 
 export {
   ButtonUI,
@@ -32,4 +33,5 @@ export {
   EmptyContentPage,
   Pagination,
   Toast,
+  RatingWithReviewCount,
 };

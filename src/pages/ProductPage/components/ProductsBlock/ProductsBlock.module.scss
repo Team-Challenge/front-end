@@ -1,0 +1,39 @@
+@import '@/styles/index.scss';
+
+.block {
+  margin: 3.75rem 0;
+
+  @media (max-width: $mobile) {
+    margin: 2.25rem 0;
+  }
+
+  &_title {
+    color: $main-text-color;
+    font-family: 'Craftwork Grotesk', sans-serif;
+    font-size: 1.75rem;
+    font-weight: 700;
+    line-height: 120%;
+    letter-spacing: 0.0525rem;
+    margin-bottom: 1.5rem;
+
+    @media (max-width: $mobile) {
+      font-family: 'Craftwork Grotesk', sans-serif;
+      font-size: 1.375rem;
+      font-weight: 700;
+      line-height: 120%;
+      letter-spacing: 0.04125rem;
+    }
+  }
+
+  &_list {
+    display: grid;
+    justify-items: center;
+    grid-template-columns: repeat(auto-fit, minmax(312px, 1fr));
+    gap: 1.5rem;
+
+    @media (max-width: $mobileSmall) {
+      grid-template-columns: repeat(auto-fit, minmax(152px, 1fr));
+      gap: 1rem;
+    }
+  }
+}

@@ -3,16 +3,14 @@ import { Icon } from '@iconify/react';
 import s from './ProductCard.module.scss';
 
 export const ProductCard = ({
-  photos,
+  id,
+  photo,
   productName,
   status,
   price,
   isUnique,
   storeName,
 }: ProductCardProps) => {
-  const mainPhoto = photos.find((photo) => photo.main === true);
-  const photo = mainPhoto?.product_photo;
-
   return (
     <div className={s.product}>
       <div className={`${s.product_photo} ${isUnique && s.product_unique}`}>

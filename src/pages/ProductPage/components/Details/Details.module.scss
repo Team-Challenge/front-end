@@ -1,0 +1,54 @@
+@import '@/styles/index.scss';
+
+.details {
+  display: grid;
+  gap: 0.75rem;
+
+  &_wrap {
+    display: grid;
+    grid-template-columns: 4.8125rem auto;
+    gap: 1.5rem;
+  }
+
+  &_subtitle {
+    color: $secondary-text-color;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.875rem;
+    font-weight: 400;
+    line-height: 1rem;
+  }
+
+  &_text {
+    color: $main-text-color;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.875rem;
+    font-weight: 400;
+    line-height: 1.25rem;
+  }
+}
+
+.color {
+  &_list {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  &_item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: $main-text-color;
+    font-size: 0.875rem;
+    font-weight: 400;
+    line-height: 150%;
+    letter-spacing: 0.14px;
+  }
+
+  &_circle {
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+  }
+}

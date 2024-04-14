@@ -1,0 +1,162 @@
+@import '@/styles/index.scss';
+
+.product {
+  display: grid;
+  grid-template-areas:
+    'breadcrumbs breadcrumbs'
+    'photos desc'
+    'photos details'
+    'photos store';
+  row-gap: 1.5rem;
+  @include adaptiveValue('column-gap', 44, 16, 0, 1440, 991.98);
+  grid-template-columns: 1fr 1fr;
+
+  @media (max-width: $tablet) {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+    'breadcrumbs'
+    'photos'
+    'desc'
+    'details'
+    'store';
+  }
+
+  &_breadcrumbs {
+    grid-area: breadcrumbs;
+  }
+
+  &_photos {
+    grid-area: photos;
+    max-width: 628px;
+    width: 100%;
+    @include adaptiveValue('height', 540, 266, 0, 1440, 991.98);
+    border-radius: 0.25rem;
+    border: 1px solid $main-border-color;
+    overflow: hidden;
+
+    @media (max-width: $tablet) {
+      max-width: 923px;
+      width: 100%;
+      max-height: 540px;
+      height: 100%;
+      justify-self: center;
+    }
+
+    @media (max-width: $mobileSmall) {
+      width: 296px;
+      max-height: 266px;
+      height: 100%;
+    }
+  }
+
+  &_desc {
+    grid-area: desc;
+
+    @media (max-width: $mobileSmall) {
+      margin-bottom: 12px;
+    }
+  }
+
+  &_details {
+    grid-area: details;
+    align-self: start;
+  }
+
+  &_store {
+    grid-area: store;
+  }
+
+  &_price {
+    color: $main-text-color;
+    font-family: "Craftwork Grotesk";
+    font-size: 1.25rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 1.25rem;
+    letter-spacing: 0.025rem;
+
+    margin: 1.25rem 0 2rem;
+
+    @media (max-width: $mobileSmall) {
+      margin: 1.25rem 0 23px;
+    }
+  }
+
+  &_title {
+    margin: 0.5rem 0 0.75rem;
+
+    @media (max-width: $mobile) {
+      color: $main-text-color;
+      font-family: "Craftwork Grotesk";
+      font-size: 1.375rem;
+      line-height: 120%;
+      letter-spacing: 0.04125rem;
+    }
+  }
+}
+
+.buttons {
+  display: flex;
+  align-items: center;
+  gap: 2.25rem;
+
+  &_buy {
+    max-width: 26.5rem;
+    width: 100%;
+  }
+
+  &_favorite {
+    color: $main-text-color;
+    font-family: "Craftwork Grotesk";
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.5rem;
+    letter-spacing: 0.03rem;
+
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+
+    &_icon {
+      padding: 0.5rem;
+      border: 1px solid $main-border-color;
+      border-radius: 50%;
+      color: $main-text-color;
+      width: 2.5rem;
+      height: 2.5rem;
+    }
+  }
+}
+
+.decorative_element {
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5rem;
+  background: url('@assets/small-decorative-element.svg') center no-repeat;
+  transform: rotate(180deg);
+  margin: 3.75rem 0;
+
+  @media (max-width: $mobile) {
+    margin: 2rem 0;
+  }
+
+  &::before {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 1px;
+    background: $light-red;
+    border-radius: 0.625rem;
+  }
+
+  &::after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 1px;
+    background: $light-red;
+    border-radius: 0.625rem;
+  }
+}

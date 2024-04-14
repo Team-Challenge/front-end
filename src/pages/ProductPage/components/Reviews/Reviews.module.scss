@@ -1,0 +1,171 @@
+@import '@/styles/index.scss';
+
+.reviews {
+  display: grid;
+
+  &_empty {
+    grid-template-areas: 'title link' 'text text' 'button button';
+    grid-template-columns: max-content 1fr;
+    row-gap: 24px;
+
+    @media (max-width: $mobileSmall) {
+      grid-template-areas: 'title' 'link' 'text' 'button';
+      grid-template-columns: 1fr;
+      row-gap: 0.5rem;
+    }
+  }
+
+  &_title {
+    grid-area: title;
+    width: fit-content;
+    color: $main-text-color;
+    font-family: 'Craftwork Grotesk', sans-serif;
+    @include adaptiveValue('font-size', 28, 22, 0, 1440, 360);
+    font-weight: 700;
+    line-height: 120%;
+    letter-spacing: 0.0525rem;
+  }
+
+  &_link {
+    grid-area: link;
+    color: $accent-text-color;
+    font-family: 'Craftwork Grotesk', sans-serif;
+    @include adaptiveValue('font-size', 16, 12, 0, 1440, 360);
+    font-weight: 700;
+    line-height: 1.5rem;
+    letter-spacing: 0.03rem;
+
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+
+    @media (max-width: $mobileSmall) {
+      gap: 0rem;
+    }
+
+    svg {
+      width: 1.25rem;
+      height: 1.25rem;
+
+      @media (max-width: $mobileSmall) {
+        margin-left: 0.25rem;
+      }
+    }
+
+    &:before {
+      content: '';
+      display: inline-block;
+      width: 1px;
+      height: 1.25rem;
+      background-color: $decorative-line;
+      border-radius: 0.25rem;
+      margin: 0 1.25rem;
+
+      @media (max-width: $mobileSmall) {
+        margin: 0 0.75rem;
+      }
+
+      @media (max-width: $mobileSmall) {
+        display: none;
+      }
+    }
+  }
+
+  &_button {
+    grid-area: button;
+    justify-self: center;
+    max-width: 15.25rem;
+
+    @media (max-width: $mobileSmall) {
+      max-width: 20rem;
+    }
+  }
+
+  &_list {
+    grid-area: reviews;
+  }
+
+  &_text {
+    &_empty {
+      grid-area: text;
+      justify-self: center;
+      max-width: 28.875rem;
+      width: 100%;
+      color: $secondary-text-color;
+      text-align: center;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1rem;
+      font-weight: 400;
+      line-height: 150%;
+      letter-spacing: 0.32px;
+      @include adaptiveValue('margin-bottom', 32, 0, 0, 1440, 360);
+
+      @media (max-width: $mobileSmall) {
+        font-size: 0.875rem;
+        letter-spacing: 0.14px;
+        margin: 0.75rem 0;
+      }
+    }
+  }
+}
+
+.textarea {
+  &_subtitle {
+    color: $secondary-text-color;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 300;
+    line-height: 1rem;
+    margin-bottom: 0.5rem;
+
+    @media (max-width: $mobileSmall) {
+      max-width: 17.4375rem;
+      margin-bottom: 0.25rem;
+    }
+  }
+}
+
+.modal {
+  > div > :first-child {
+    @include mobileTitleDecorationOverride;
+  }
+
+  &_button {
+    margin-top: 2rem;
+
+    @media (max-width: $mobileSmall) {
+      margin-top: 1.25rem;
+    }
+  }
+}
+
+.rating {
+  &_wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 8px;
+    margin-bottom: 24px;
+
+    @media (max-width: $mobileSmall) {
+      margin-bottom: 0.62rem;
+    }
+  }
+
+  &_subtitle {
+    color: $main-text-color;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.25rem;
+    letter-spacing: 0.01rem;
+
+    @media (max-width: $mobileSmall) {
+      font-size: 0.875rem;
+      font-weight: 400;
+      line-height: 150%;
+      letter-spacing: 0.00875rem;
+    }
+  }
+}
