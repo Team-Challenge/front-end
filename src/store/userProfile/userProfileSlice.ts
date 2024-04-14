@@ -8,6 +8,7 @@ interface UserProfileState {
   post?: string;
   address?: string;
   branch_name?: string;
+  hasStore?: boolean;
 }
 
 const initialState: UserProfileState = {
@@ -18,6 +19,7 @@ const initialState: UserProfileState = {
   post: '',
   address: '',
   branch_name: '',
+  hasStore: false,
 };
 
 const userProfileSlice = createSlice({
@@ -45,6 +47,9 @@ const userProfileSlice = createSlice({
     setDeliveryAddress: (state, action: PayloadAction<string>) => {
       state.address = action.payload;
     },
+    setStore: (state, action: PayloadAction<boolean>) => {
+      state.hasStore = action.payload;
+    },
   },
 });
 
@@ -56,6 +61,7 @@ export const {
   setDeliveryPost,
   setDeliveryBranch,
   setDeliveryAddress,
+  setStore,
 } = userProfileSlice.actions;
 
 export default userProfileSlice.reducer;

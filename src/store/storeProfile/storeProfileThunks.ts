@@ -1,14 +1,14 @@
 import $api from '@/http';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import {
-  setStore,
   setName,
   setDescription,
-  setShopPhoto,
   setBannerPhoto,
   setStorePhoneNumber,
-  setLink,
   setLinkToStore,
+  setInstagramLink,
+  setStorePhoto,
+  setProductList,
 } from './storeProfileSlice';
 
 export const getStoreInfo = createAsyncThunk(
@@ -17,19 +17,32 @@ export const getStoreInfo = createAsyncThunk(
     try {
       const response = await $api.get('/shops/shop_info');
       if (response.status === 200) {
-        dispatch(setStore(true));
+        dispatch(setLinkToStore(response.data.id));
         dispatch(setName(response.data.name));
         dispatch(setDescription(response.data.description));
-        dispatch(setShopPhoto(response.data.photo_shop));
+        dispatch(setStorePhoto(response.data.photo_shop));
         dispatch(setBannerPhoto(response.data.banner_shop));
         dispatch(setStorePhoneNumber(response.data.phone_number));
-        dispatch(setLink(response.data.link));
-        dispatch(setLinkToStore(response.data.owner));
+        dispatch(setInstagramLink(response.data.link));
       }
     } catch (e) {
-      console.warn('Ой, здається, у вас ще немає створеного магазину.');
-      // const error = e as Error;
-      // throw error;
+      const error = e as Error;
+      throw error;
+    }
+  },
+);
+
+export const getStoreProducts = createAsyncThunk(
+  'storeSettings/products',
+  async (_, { dispatch }) => {
+    try {
+      const response = await $api.get(`/products/shop_products`);
+      if (response.status === 200) {
+        dispatch(setProductList(response.data.data));
+      }
+    } catch (e) {
+      const error = e as Error;
+      throw error;
     }
   },
 );

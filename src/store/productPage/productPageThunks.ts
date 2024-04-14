@@ -1,15 +1,24 @@
 import $api from '@/http';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ProductCharacteristic } from '@/types';
-import { setAllProducts } from './productPageSlice';
+import { setProductData, setStoreData } from './productPageSlice';
 
-export const getAllProductsInfo = createAsyncThunk(
+export const getProductInfoById = createAsyncThunk(
   'productPage/info',
-  async (_, { dispatch }) => {
+  async (product_id: number, { dispatch }) => {
     try {
-      const response = await $api.get('/products/shop_products');
-      if (response.status === 200) {
-        dispatch(setAllProducts(response.data));
+      const productResponse = await $api.get(
+        `/products/product_info/${product_id}`,
+      );
+      if (productResponse.status === 200) {
+        dispatch(setProductData(productResponse.data));
+      }
+
+      const shopResponse = await $api.get(
+        `/shops/shop_info/${productResponse.data.shop_id}`,
+      );
+      if (shopResponse.status === 200) {
+        dispatch(setStoreData(shopResponse.data.shop));
       }
     } catch (e) {
       const error = e as Error;
@@ -25,7 +34,7 @@ export const addNewProduct = createAsyncThunk(
       product_name: string;
       product_description?: string;
       category_id: number;
-      sub_category_name: string;
+      sub_category_id: number;
       product_status: string;
       is_unique?: boolean;
       price: string;
@@ -48,7 +57,7 @@ export const addNewProduct = createAsyncThunk(
         product_name: data.product_name,
         product_description: data.product_description,
         category_id: data.category_id,
-        sub_category_name: data.sub_category_name,
+        sub_category_id: data.sub_category_id,
         product_status: data.product_status,
         is_unique: data.is_unique,
         price: data.price,
@@ -69,7 +78,7 @@ export const addNewProduct = createAsyncThunk(
   },
 );
 
-export const uploadStorePhoto = createAsyncThunk(
+export const uploadProductPhoto = createAsyncThunk(
   'productPage/uploadProductPhoto',
   async (data: { product_id: string; form_data: FormData }) => {
     const response = await $api.post(

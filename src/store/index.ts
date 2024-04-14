@@ -6,6 +6,7 @@ import deliverySlice from './deliveryOptions/deliverySlice';
 import overlayStateSlice from './overlayStateSlice';
 import modalSlice from './modalSlice';
 import productPageSlice from './productPage/productPageSlice';
+import storePageSlice from './storePage/storePageSlice';
 
 const store = configureStore({
   reducer: {
@@ -16,6 +17,7 @@ const store = configureStore({
     delivery: deliverySlice,
     modal: modalSlice,
     product: productPageSlice,
+    storePage: storePageSlice,
   },
   middleware: (getDefaultMiddleWare) => getDefaultMiddleWare().concat(),
   devTools: process.env.NODE_ENV !== 'production',

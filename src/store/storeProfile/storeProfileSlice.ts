@@ -1,33 +1,34 @@
+import { ProductData } from '@/types';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 interface StoreProfileState {
-  hasStore: boolean;
   name: string;
   description: string;
-  shop_photo: string;
-  banner_photo: string;
-  phone_number: string;
-  link: string;
+  storePhoto: string;
+  banner: string;
+  phoneNumber: string;
+  instagramLink: string;
   linkToStore: number;
+  productList: ProductData[];
 }
 
 const initialState: StoreProfileState = {
-  hasStore: false,
   name: '',
   description: '',
-  shop_photo: '',
-  banner_photo: '',
-  phone_number: '',
-  link: '',
+  storePhoto: '',
+  banner: '',
+  phoneNumber: '',
+  instagramLink: '',
   linkToStore: 0,
+  productList: [],
 };
 
 const storeProfileSlice = createSlice({
   name: 'storeSettings',
   initialState,
   reducers: {
-    setStore: (state, action: PayloadAction<boolean>) => {
-      state.hasStore = action.payload;
+    setLinkToStore: (state, action: PayloadAction<number>) => {
+      state.linkToStore = action.payload;
     },
     setName: (state, action: PayloadAction<string>) => {
       state.name = action.payload;
@@ -35,33 +36,33 @@ const storeProfileSlice = createSlice({
     setDescription: (state, action: PayloadAction<string>) => {
       state.description = action.payload;
     },
-    setShopPhoto: (state, action: PayloadAction<string>) => {
-      state.shop_photo = action.payload;
+    setStorePhoto: (state, action: PayloadAction<string>) => {
+      state.storePhoto = action.payload;
     },
     setBannerPhoto: (state, action: PayloadAction<string>) => {
-      state.banner_photo = action.payload;
+      state.banner = action.payload;
     },
     setStorePhoneNumber: (state, action: PayloadAction<string>) => {
-      state.phone_number = action.payload;
+      state.phoneNumber = action.payload;
     },
-    setLink: (state, action: PayloadAction<string>) => {
-      state.link = action.payload;
+    setInstagramLink: (state, action: PayloadAction<string>) => {
+      state.instagramLink = action.payload;
     },
-    setLinkToStore: (state, action: PayloadAction<number>) => {
-      state.linkToStore = action.payload;
+    setProductList: (state, action: PayloadAction<ProductData[]>) => {
+      state.productList = action.payload;
     },
   },
 });
 
 export const {
-  setStore,
+  setLinkToStore,
   setName,
   setDescription,
-  setShopPhoto,
+  setStorePhoto,
   setBannerPhoto,
   setStorePhoneNumber,
-  setLink,
-  setLinkToStore,
+  setInstagramLink,
+  setProductList,
 } = storeProfileSlice.actions;
 
 export default storeProfileSlice.reducer;

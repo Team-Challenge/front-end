@@ -1,58 +1,56 @@
+import { ShortStoreData, ProductData } from '@/types';
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-
-interface ProductData {
-  product_name: string;
-  product_description?: string;
-  category_id: number;
-  sub_category_name: string;
-  product_status: string;
-  is_unique?: boolean;
-  price: string;
-  photos: Array<{
-    id: number;
-    main: boolean;
-    product_photo: string;
-    timestamp: string;
-  }>;
-  product_characteristic: {
-    parameters?: Array<{
-      length: string;
-      width: string;
-      weight: string;
-      size: null | string;
-    }>;
-    coating?: string[];
-    colors?: string[];
-    deadline?: string;
-    decorative_elements?: string[];
-    metals?: string[];
-    other?: string[];
-    stones?: string[];
-    textiles?: string[];
-    care_instructions?: string;
-  };
-  method_of_payment: {
-    cardPayment: boolean;
-    cashPayment: boolean;
-    securePayment: boolean;
-  };
-  delivery_post: {
-    novaPost: boolean;
-    ukrPost: boolean;
-  };
-  is_return?: boolean;
-  is_active?: boolean;
-  id: number;
-  time_added: string;
-  time_modifeid: string;
-}
 
 interface ProductState {
   products: ProductData[];
+  product: ProductData;
+  store: ShortStoreData;
 }
 
 const initialState: ProductState = {
   products: [],
+  product: {
+    product_name: '',
+    category_id: 0,
+    sub_category_id: 0,
+    product_status: '',
+    price: '',
+    photos: [],
+    product_characteristic: {
+      parameters: undefined,
+      coating: undefined,
+      colors: undefined,
+      deadline: undefined,
+      decorative_elements: undefined,
+      metals: undefined,
+      other: undefined,
+      stones: undefined,
+      textiles: undefined,
+      care_instructions: undefined,
+    },
+    method_of_payment: {
+      cardPayment: false,
+      cashPayment: false,
+      securePayment: false,
+    },
+    delivery_post: {
+      novaPost: false,
+      ukrPost: false,
+    },
+    id: 0,
+    time_added: '',
+    time_modifeid: '',
+  },
+  store: {
+    id: 0,
+    owner_id: 0,
+    name: '',
+    photo_shop: null,
+    banner_shop: null,
+    description: '',
+    phone_number: '',
+    link: '',
+  },
 };
 
 const productSlice = createSlice({
@@ -61,6 +59,9 @@ const productSlice = createSlice({
   reducers: {
     setAllProducts: (state, action: PayloadAction<ProductData[]>) => {
       state.products = action.payload;
+    },
+    setProductData: (state, action: PayloadAction<ProductData>) => {
+      state.product = action.payload;
     },
     setProductStatus: (
       state,
@@ -73,9 +74,17 @@ const productSlice = createSlice({
         product.product_status = productStatus;
       }
     },
+    setStoreData: (state, action: PayloadAction<ShortStoreData>) => {
+      state.store = action.payload;
+    },
   },
 });
 
-export const { setAllProducts, setProductStatus } = productSlice.actions;
+export const {
+  setAllProducts,
+  setProductData,
+  setProductStatus,
+  setStoreData,
+} = productSlice.actions;
 
 export default productSlice.reducer;

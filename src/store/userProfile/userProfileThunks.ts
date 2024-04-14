@@ -9,7 +9,9 @@ import {
   setFullName,
   setPhoneNumber,
   setProfilePhoto,
+  setStore,
 } from './userProfileSlice';
+import { setLinkToStore } from '../storeProfile/storeProfileSlice';
 
 export const getUserInfo = createAsyncThunk(
   'userAccount/info',
@@ -24,6 +26,8 @@ export const getUserInfo = createAsyncThunk(
         dispatch(setDeliveryPost(response.data.post));
         dispatch(setDeliveryBranch(response.data.branch_name));
         dispatch(setDeliveryAddress(response.data.address));
+        dispatch(setStore(response.data.have_a_shop));
+        dispatch(setLinkToStore(response.data.shop_id));
       }
     } catch (e) {
       const error = e as Error;
