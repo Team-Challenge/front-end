@@ -4,7 +4,7 @@ import { Icon } from '@iconify/react';
 import { useAppDispatch, useAppSelector } from '@/hooks/reduxHook';
 import {
   addNewProduct,
-  uploadStorePhoto,
+  uploadProductPhoto,
 } from '@/store/productPage/productPageThunks';
 import { closeModal, openModal } from '@/store/modalSlice';
 import { ProductAddForm } from '@/types';
@@ -48,7 +48,7 @@ export const ProductAddPage = () => {
     try {
       const formattedData = {
         category_id: data.category,
-        sub_category_name: data.subcategory,
+        sub_category_id: data.subcategory,
         product_name: data.productName,
         price: data.price,
         product_description:
@@ -83,7 +83,7 @@ export const ProductAddPage = () => {
       const productResponse = await dispatch(addNewProduct(formattedData));
 
       if (productResponse.payload !== 'Помилка додавання товару') {
-        const productId = productResponse.payload[1].product_id;
+        const productId = productResponse.payload.product_id;
 
         const allPhotos = [
           { file: data.productPhotoFirst, isMain: 'true' },
@@ -99,7 +99,7 @@ export const ProductAddPage = () => {
           formData.append('main', photo.isMain);
 
           await dispatch(
-            uploadStorePhoto({
+            uploadProductPhoto({
               product_id: productId,
               form_data: formData,
             }),

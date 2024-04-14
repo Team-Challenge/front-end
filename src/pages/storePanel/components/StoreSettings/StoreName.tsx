@@ -10,9 +10,9 @@ export const StoreName = () => {
     formState: { errors },
   } = methods;
 
-  const storeName = useAppSelector((state) => state.storeProfile.name);
+  const { name } = useAppSelector((state) => state.storeProfile);
 
-  const { charCount, handleInput } = useCharCount(storeName, 30);
+  const { charCount, handleInput } = useCharCount(name, 30);
 
   const hasError = Boolean(errors.name);
 
@@ -25,7 +25,7 @@ export const StoreName = () => {
         type='text'
         id='name'
         placeholder='Назва магазину'
-        value={storeName}
+        value={name}
         required
         errorMessage='Будь ласка, введіть назву магазину'
         maxLength={30}

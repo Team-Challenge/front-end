@@ -15,7 +15,7 @@ import s from './Header.module.scss';
 export const Header = () => {
   const { width } = useWindowDimensions();
   const { isAuth } = useAppSelector((state) => state.auth);
-  const { hasStore } = useAppSelector((state) => state.storeProfile);
+  const { hasStore } = useAppSelector((state) => state.userProfile);
 
   const [isShopDropdownOpen, toggleShopMenu] = useToggleMenu('isShopDropdown');
   const [isUserDropdownOpen, toggleUserMenu] = useToggleMenu('isUserDropdown');

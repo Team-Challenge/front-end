@@ -1,24 +1,18 @@
-import { useEffect } from 'react';
 import { usePagination } from '@/hooks/usePagination';
 import { useAppDispatch, useAppSelector } from '@/hooks/reduxHook';
-import { getAllProductsInfo } from '@/store/productPage/productPageThunks';
 import { Sorting } from '@/components/Sorting';
 import { ProductCard } from '@/components/ProductCard';
 import { Pagination } from '@/components/UI';
+import { Link } from 'react-router-dom';
 import s from './StoreProducts.module.scss';
 
 export const StoreProducts = () => {
-  const dispatch = useAppDispatch();
-  const { products } = useAppSelector((state) => state.product);
-  const isProducts = products.length > 0;
+  const products = useAppSelector((state) => state.storePage.productList);
+  const isProducts = products && products.length > 0;
 
-  const itemsPerPage = 36;
+  const itemsPerPage = 32;
   const { currentPage, changePage, pageData, nextPage, previousPage } =
     usePagination(products, itemsPerPage);
-
-  useEffect(() => {
-    dispatch(getAllProductsInfo());
-  }, []);
 
   return (
     <div
@@ -32,13 +26,16 @@ export const StoreProducts = () => {
           <ul className={s.products_list}>
             {pageData().map((product) => (
               <li key={product.id}>
-                <ProductCard
-                  photos={product.photos}
-                  productName={product.product_name}
-                  status={product.product_status}
-                  price={product.price}
-                  isUnique={product.is_unique}
-                />
+                <Link to={`/store/products/${product.id}`}>
+                  <ProductCard
+                    id={product.id}
+                    photo={product.photo.product_photo}
+                    productName={product.product_name}
+                    status={product.product_status}
+                    price={product.price}
+                    isUnique={product.is_unique}
+                  />
+                </Link>
               </li>
             ))}
           </ul>

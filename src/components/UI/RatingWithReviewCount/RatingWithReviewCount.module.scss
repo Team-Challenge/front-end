@@ -1,0 +1,21 @@
+@import '@/styles/index.scss';
+
+.rating {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  &_amount {
+    color: $main-text-color;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.25rem;
+    letter-spacing: 0.01rem;
+
+    @media (max-width: $mobile) {
+      font-size: 0.75rem;
+      line-height: 1rem;
+    }
+  }
+}

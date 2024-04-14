@@ -35,6 +35,7 @@ export const ChangeProductStatus = ({ productId }: { productId: number }) => {
         {mutableProductStatuses.map(({ id, text }) => (
           <li className={s.status_item} key={id}>
             <label className={s.status_label}>
+              {text}
               <input
                 type='radio'
                 id={id}
@@ -42,7 +43,6 @@ export const ChangeProductStatus = ({ productId }: { productId: number }) => {
                 className={s.status_input}
                 onClick={() => setStatus(id)}
               />
-              {text}
             </label>
           </li>
         ))}

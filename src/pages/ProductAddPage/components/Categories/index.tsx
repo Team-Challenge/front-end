@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+/* eslint-disable jsx-a11y/no-noninteractive-tabindex */
 import { useState } from 'react';
 import { Controller, useFormContext } from 'react-hook-form';
 import { categoryList } from '@/constants/categoryList';
@@ -17,8 +19,14 @@ export const Categories = () => {
   const foundCategory = categoryList.find(
     (category) => category.label === selectedCategory,
   );
-  const hasSubcategories = foundCategory?.subcategories?.length! > 0;
+  // const hasSubcategories = foundCategory?.subcategories?.length! > 0;
   const isNotSetsCategory = selectedCategory !== 'Набори';
+  // console.log(foundCategory.subcategories);
+
+  const hasSubcategories =
+    foundCategory &&
+    foundCategory.subcategories &&
+    foundCategory.subcategories.length > 0;
 
   const handleCategoriesLabelKeyPress = (
     event: React.KeyboardEvent<HTMLLabelElement>,
@@ -35,10 +43,11 @@ export const Categories = () => {
   const handleSubcategoriesLabelKeyPress = (
     event: React.KeyboardEvent<HTMLLabelElement>,
     subcategory: string,
+    id: number,
   ) => {
     if (event.key === 'Enter') {
       setSelectedSubcategory(subcategory);
-      setValue('subcategory', subcategory);
+      setValue('subcategory', id);
       clearErrors('category');
       clearErrors('subcategory');
     }
@@ -74,7 +83,7 @@ export const Categories = () => {
                       setValue('category', id);
 
                       if (label === 'Набори') {
-                        setValue('subcategory', 'Набір');
+                        setValue('subcategory', 61);
                       } else {
                         setValue('subcategory', '');
                       }
@@ -104,8 +113,8 @@ export const Categories = () => {
             Оберіть підкатегорію<span>*</span>
           </p>
           <ul className={s.list}>
-            {foundCategory?.subcategories?.map((subcategory) => (
-              <li key={subcategory} className={s.subcategories_item}>
+            {foundCategory.subcategories.map(({ label, id }) => (
+              <li key={id} className={s.subcategories_item}>
                 <Controller
                   name='subcategory'
                   control={control}
@@ -120,13 +129,13 @@ export const Categories = () => {
                       {...field}
                       type='radio'
                       name='subcategory'
-                      id={subcategory}
-                      value={subcategory}
+                      id={label}
+                      value={label}
                       className={s.input}
-                      checked={selectedSubcategory === subcategory}
+                      checked={selectedSubcategory === label}
                       onChange={() => {
-                        setSelectedSubcategory(subcategory);
-                        setValue('subcategory', subcategory);
+                        setSelectedSubcategory(label);
+                        setValue('subcategory', id);
                         clearErrors('category');
                         clearErrors('subcategory');
                       }}
@@ -134,14 +143,14 @@ export const Categories = () => {
                   )}
                 />
                 <label
-                  htmlFor={subcategory}
+                  htmlFor={label}
                   tabIndex={0}
                   onKeyDown={(event) =>
-                    handleSubcategoriesLabelKeyPress(event, subcategory)
+                    handleSubcategoriesLabelKeyPress(event, label, id)
                   }
                   className={s.label}
                 >
-                  {subcategory}
+                  {label}
                 </label>
               </li>
             ))}

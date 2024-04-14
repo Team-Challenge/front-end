@@ -2,9 +2,11 @@ import { ProductStoreItemProps } from '@/types';
 import { categoryList } from '@/constants/categoryList';
 import { Tooltip } from '@/components/UI';
 import { Icon } from '@iconify/react';
+import { Link } from 'react-router-dom';
 import s from './ProductsList.module.scss';
 
 export const ProductItemMobile = ({
+  id,
   photos,
   title,
   date,
@@ -26,7 +28,9 @@ export const ProductItemMobile = ({
           <img src={photo} alt='product' />
         </div>
         <p className={s.header_subtitle}>Товар</p>
-        <h5 className={s.header_title}>{title}</h5>
+        <Link to={`/store/products/${id}`}>
+          <h5 className={s.header_title}>{title}</h5>
+        </Link>
         <button type='button' className={s.header_edit}>
           <Icon icon='solar:pen-outline' />
         </button>

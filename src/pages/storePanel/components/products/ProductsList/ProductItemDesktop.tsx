@@ -1,9 +1,11 @@
 import { ProductStoreItemProps } from '@/types';
 import { categoryList } from '@/constants/categoryList';
 import { Icon } from '@iconify/react';
+import { Link } from 'react-router-dom';
 import s from './ProductsList.module.scss';
 
 export const ProductItemDesktop = ({
+  id,
   photos,
   title,
   date,
@@ -23,7 +25,9 @@ export const ProductItemDesktop = ({
       <div className={s.cell_img}>
         <img src={photo} alt='product' />
       </div>
-      <h5 className={s.cell_title}>{title}</h5>
+      <Link to={`/store/products/${id}`}>
+        <h5 className={s.cell_title}>{title}</h5>
+      </Link>
       <p className={s.cell_date}>{date}</p>
       <p className={s.cell_code}>{code}</p>
       <p className={s.cell_price}>{price}₴</p>

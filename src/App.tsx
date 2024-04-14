@@ -10,7 +10,13 @@ import {
   getNovaPostInfo,
   getUkrPostInfo,
 } from './store/deliveryOptions/deliveryThunks';
-import { PageNotFound, Home, ProductAddPage, StorePage } from './pages';
+import {
+  PageNotFound,
+  Home,
+  ProductAddPage,
+  StorePage,
+  ProductPage,
+} from './pages';
 import { Header } from './components/Header';
 import { UserPanelRoutes } from './components/routes/UserPanelRoutes';
 import { StorePanelRoutes } from './components/routes/StorePanelRoutes';
@@ -20,7 +26,7 @@ export const App = () => {
   const dispatch = useAppDispatch();
   const { width } = useWindowDimensions();
   const { isAuth } = useAppSelector((state) => state.auth);
-  const { hasStore } = useAppSelector((state) => state.storeProfile);
+  const { hasStore } = useAppSelector((state) => state.userProfile);
   const isBurgerMenuOpen = useAppSelector(
     (state) => state.overlayState.isBurgerMenu,
   );
@@ -30,10 +36,13 @@ export const App = () => {
       dispatch(checkAuth());
       dispatch(getUserInfo());
       dispatch(getStoreInfo());
-      dispatch(getNovaPostInfo());
-      dispatch(getUkrPostInfo());
     }
   }, [isAuth]);
+
+  useEffect(() => {
+    dispatch(getNovaPostInfo());
+    dispatch(getUkrPostInfo());
+  }, []);
 
   return (
     <GoogleOAuthProvider clientId={import.meta.env.VITE_APP_CLIENT_ID}>
@@ -50,7 +59,8 @@ export const App = () => {
           {isAuth && hasStore && (
             <Route path='/account/new-product' element={<ProductAddPage />} />
           )}
-          <Route path='/store/:id' element={<StorePage />} />
+          <Route path='/store/:storeId' element={<StorePage />} />
+          <Route path='/store/products/:productId' element={<ProductPage />} />
         </Routes>
       </div>
     </GoogleOAuthProvider>

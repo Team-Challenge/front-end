@@ -1,17 +1,14 @@
-import { TextInput } from '@/components/UI';
-import { INSTAGRAM_NICKNAME_REGEX } from '@/constants/RegExp';
 import { useAppSelector } from '@/hooks/reduxHook';
+import { INSTAGRAM_NICKNAME_REGEX } from '@/constants/RegExp';
 import { transformInstagramLinkToNickname } from '@/utils/transformInstagramLink';
+import { TextInput } from '@/components/UI';
 import s from './StoreSettings.module.scss';
 
 export const StoreSocialMediaLink = () => {
-  const storeSocialMediaLink = useAppSelector(
-    (state) => state.storeProfile.link,
-  );
+  const { instagramLink } = useAppSelector((state) => state.storeProfile);
 
-  const instagramLink =
-    storeSocialMediaLink &&
-    transformInstagramLinkToNickname(storeSocialMediaLink);
+  const instagramNickname =
+    instagramLink && transformInstagramLinkToNickname(instagramLink);
 
   return (
     <div className={s.form_wrap}>
@@ -20,11 +17,11 @@ export const StoreSocialMediaLink = () => {
         type='text'
         id='link'
         placeholder='@myshop'
-        value={instagramLink as string}
-        required={Boolean(instagramLink)}
+        value={instagramNickname as string}
+        required={Boolean(instagramNickname)}
         regex={INSTAGRAM_NICKNAME_REGEX}
         errorMessage='Будь ласка, введіть ваш нікнейм'
-        editModeIcon={Boolean(instagramLink)}
+        editModeIcon={Boolean(instagramNickname)}
       />
     </div>
   );

@@ -15,15 +15,15 @@ export const ProductsList = ({
 }: {
   selectedStatus: string;
 }) => {
-  const [activeProductId, setActiveProductId] = useState<number | null>(null);
-  const { width } = useWindowDimensions();
-  const { products } = useAppSelector((state) => state.product);
   const dispatch = useAppDispatch();
+  const { width } = useWindowDimensions();
+  const { productList } = useAppSelector((state) => state.storeProfile);
   const isModalOpen = useAppSelector(
     (state) => state.modal.changeProductStatus,
   );
+  const [activeProductId, setActiveProductId] = useState<number | null>(null);
 
-  const filteredProducts = products.filter((product) => {
+  const filteredProducts = productList.filter((product) => {
     if (selectedStatus === 'Всі') {
       return true;
     }
@@ -78,6 +78,7 @@ export const ProductsList = ({
           {filteredProducts.map((product) => (
             <div className={`${s.cell} ${s.row}`} key={product.id}>
               <ProductItemDesktop
+                id={product.id}
                 photos={product.photos}
                 title={product.product_name}
                 date={formatDate(product.time_added)}
@@ -94,6 +95,7 @@ export const ProductsList = ({
         <div className={s.block}>
           {filteredProducts.map((product) => (
             <ProductItemMobile
+              id={product.id}
               photos={product.photos}
               title={product.product_name}
               date={formatDate(product.time_added)}

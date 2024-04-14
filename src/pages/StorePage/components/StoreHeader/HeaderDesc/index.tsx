@@ -15,8 +15,6 @@ export const HeaderDesc = () => {
       ? shopDescription
       : `${shopDescription.slice(0, 100)}...`;
 
-  console.log(trimmedDesc);
-
   const mobileDesc = isShow ? shopDescription : trimmedDesc;
 
   return shopDescription.trim().length ? (

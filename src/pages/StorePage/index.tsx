@@ -1,21 +1,30 @@
-import { useState } from 'react';
-import { useAppSelector } from '@/hooks/reduxHook';
-import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { useAppDispatch, useAppSelector } from '@/hooks/reduxHook';
+import { Link, useParams } from 'react-router-dom';
 import { Icon } from '@iconify/react';
+import { getStoreInfoById } from '@/store/storePage/storePageThunks';
 import { StoreProducts } from './components/StoreProducts';
 import { StoreReviews } from './components/StoreReviews';
 import { StoreHeader } from './components/StoreHeader';
 import s from './StorePage.module.scss';
 
 export const StorePage = () => {
+  const { storeId } = useParams();
+  const dispatch = useAppDispatch();
   const [activeButton, setActiveButton] = useState<string>('products');
-  const { products } = useAppSelector((state) => state.product);
-  const isProducts = products.length > 0;
-  const productQuantity = isProducts ? products.length : 0;
+  const products = useAppSelector((state) => state.storePage.productList);
+  const isProducts = products && products?.length > 0;
+  const productQuantity = isProducts ? products?.length : 0;
 
   const handleChangeScreen = (screen: string) => {
     setActiveButton(screen);
   };
+
+  useEffect(() => {
+    if (storeId) {
+      dispatch(getStoreInfoById(+storeId));
+    }
+  }, [storeId]);
 
   return (
     <section className={s.store}>

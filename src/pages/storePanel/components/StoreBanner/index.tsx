@@ -14,11 +14,9 @@ import { BannerModal } from './BannerModal';
 import s from './StoreBanner.module.scss';
 
 export const StoreBanner = () => {
-  const { width } = useWindowDimensions();
   const dispatch = useAppDispatch();
-  const storeBanner = useAppSelector(
-    (state) => state.storeProfile.banner_photo,
-  );
+  const { width } = useWindowDimensions();
+  const { banner } = useAppSelector((state) => state.storeProfile);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const dropdownRef = useRef<HTMLInputElement | null>(null);
@@ -80,9 +78,9 @@ export const StoreBanner = () => {
   return (
     <div className={s.banner}>
       <div className={s.banner_image}>
-        {storeBanner && <img src={storeBanner} alt='banner' />}
+        {banner && <img src={banner} alt='banner' />}
 
-        {!storeBanner && width >= 991.98 ? (
+        {!banner && width >= 991.98 ? (
           <FileDrop onChange={handleBannerUpload}>
             <div className={s.banner_text}>
               <p>Завантажити фото банера</p>
@@ -113,7 +111,7 @@ export const StoreBanner = () => {
                 <Icon icon='solar:camera-outline' />
                 Завантажити нове фото
               </button>
-              {storeBanner && (
+              {banner && (
                 <button
                   type='button'
                   onClick={handleDeleteBanner}
@@ -127,7 +125,7 @@ export const StoreBanner = () => {
           )}
         </div>
       ) : (
-        storeBanner && (
+        banner && (
           <div className={s.banner_buttons}>
             <button type='button' onClick={handleUploadClick}>
               <Icon icon='solar:camera-outline' />

@@ -5,6 +5,7 @@ $white-grey: #f1f1f1;
 $white-smoke: #f8f8f8;
 $light-grey: #e3e2e1;
 $dark-grey: #28282880;
+$slate-grey: #777777;
 $green: #1a7171;
 $light-green: #e4eaea;
 $medium-green: #185f5f;
@@ -49,5 +50,14 @@ $active: $yellow-orange;
 $completed: $green;
 $delivery: $medium-blue;
 $cancelled: $red;
+
+//new vars
+$main-text-color: $black;
+$secondary-text-color: $slate-grey;
+$accent-text-color: $green;
+
+$main-border-color: $light-grey;
+
+$decorative-line: $light-grey;
 
 

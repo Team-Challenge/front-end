@@ -2,18 +2,21 @@ import defaultStorePic from '@assets/default-store-pic.svg';
 import { Icon } from '@iconify/react';
 import { useAppSelector } from '@/hooks/reduxHook';
 import { Tooltip } from '@/components/UI';
+import { StoreContacts } from '@components/StoreContacts';
 import { Rating } from './Rating';
-import { Contacts } from './Contacts';
 import { HeaderDesc } from './HeaderDesc';
 import s from './StoreHeader.module.scss';
 
 export const StoreHeader = () => {
-  const name = useAppSelector((state) => state.storeProfile.name);
-  const shopPhoto = useAppSelector((state) => state.storeProfile.shop_photo);
-  const banner = useAppSelector((state) => state.storeProfile.banner_photo);
-  const shopDescription = useAppSelector(
-    (state) => state.storeProfile.description,
-  );
+  const store = useAppSelector((state) => state.storePage.storeInfo);
+  const {
+    name,
+    photo_shop: storePhoto,
+    banner_shop: banner,
+    phone_number: phoneNumber,
+    link: instagramLink,
+    description,
+  } = store;
 
   return (
     <div className={s.header}>
@@ -24,10 +27,10 @@ export const StoreHeader = () => {
       )}
       <div
         className={`${s.header_photo} ${
-          shopDescription.length > 500 ? s.header_photo_center : ''
+          description && description.length > 500 ? s.header_photo_center : ''
         }`}
       >
-        <img src={shopPhoto || defaultStorePic} alt='shopPhoto' />
+        <img src={storePhoto || defaultStorePic} alt='shopPhoto' />
       </div>
       <div className={s.header_details}>
         <div className={s.header_info}>
@@ -45,11 +48,14 @@ export const StoreHeader = () => {
               <Icon icon='solar:question-circle-outline' />
             </Tooltip>
           </div>
-          {shopDescription && <HeaderDesc />}
+          {description && <HeaderDesc />}
         </div>
       </div>
       <div className={s.contacts_wrapper}>
-        <Contacts hideText={1260} />
+        <StoreContacts
+          phoneNumber={phoneNumber}
+          instagramLink={instagramLink || null}
+        />
       </div>
     </div>
   );

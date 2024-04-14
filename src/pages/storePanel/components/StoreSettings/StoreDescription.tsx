@@ -3,7 +3,7 @@ import { TextArea } from '@/components/UI';
 import s from './StoreSettings.module.scss';
 
 export const StoreDescription = () => {
-  const storeDesc = useAppSelector((state) => state.storeProfile.description);
+  const { description } = useAppSelector((state) => state.storeProfile);
 
   return (
     <div className={s.form_wrap}>
@@ -16,9 +16,9 @@ export const StoreDescription = () => {
         placeholder='Додайте свій опис'
         maxLength={1000}
         minLength={1}
-        defaultValue={storeDesc}
-        required={Boolean(storeDesc)}
-        editModeIcon={Boolean(storeDesc)}
+        defaultValue={description}
+        required={Boolean(description)}
+        editModeIcon={Boolean(description)}
         className={s.form_textarea}
       />
     </div>

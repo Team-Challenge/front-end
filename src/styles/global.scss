@@ -419,3 +419,19 @@ input {
     transition: transform 0.3s;
   }
 }
+
+.rating_stars_select > .ant-rate-star > div > .ant-rate-star-first,
+.rating_stars_select > .ant-rate-star > div > .ant-rate-star-second {
+  svg {
+    width: 3rem;
+    height: 3rem;
+  }
+}
+
+.rating_stars_select > .ant-rate-star:not(:last-child) {
+  margin-inline-end: 10px;
+
+  @media (max-width: $mobile) {
+    margin-inline-end: 9px;
+  }
+}

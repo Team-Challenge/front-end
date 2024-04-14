@@ -336,7 +336,7 @@ export interface ProductAddForm {
   productPhotoThird: File;
   productPhotoFourth: File;
   category: number;
-  subcategory: string;
+  subcategory: number;
   status: string;
   uniqueItem?: boolean;
   deadline?: string;
@@ -367,22 +367,67 @@ export interface ProductAddForm {
   refunds?: boolean;
 }
 
-export interface ProductCardProps {
+export interface ProductData {
+  product_name: string;
+  product_description?: string;
+  category_id: number;
+  sub_category_id: number;
+  product_status: string;
+  is_unique?: boolean;
+  price: string;
   photos: Array<{
     id: number;
     main: boolean;
     product_photo: string;
     timestamp: string;
   }>;
+  product_characteristic: {
+    parameters?: Array<{
+      length: string;
+      width: string;
+      weight: string;
+      size: null | string;
+    }>;
+    coating?: string[];
+    colors?: string[];
+    deadline?: string;
+    decorative_elements?: string[];
+    metals?: string[];
+    other?: string[];
+    stones?: string[];
+    textiles?: string[];
+    care_instructions?: string;
+  };
+  method_of_payment: {
+    cardPayment: boolean;
+    cashPayment: boolean;
+    securePayment: boolean;
+  };
+  delivery_post: {
+    novaPost: boolean;
+    ukrPost: boolean;
+  };
+  is_return?: boolean;
+  is_active?: boolean;
+  id: number;
+  time_added: string;
+  time_modifeid: string;
+  shop_id?: number;
+}
+
+export interface ProductCardProps {
+  id?: number;
+  photo: string;
   productName: string;
   status: string;
-  price: string;
+  price: number | string;
   isUnique?: boolean;
   storeName?: string;
 }
 
 // store panel types
 export interface ProductStoreItemProps {
+  id: number;
   photos: Array<{
     id: number;
     main: boolean;
@@ -422,6 +467,7 @@ export interface ReviewItemProps {
   userPhoto: string;
   userName: string;
   date: string;
+  isVerifiedPurchase?: boolean;
 }
 
 export interface RatingItemProps {
@@ -435,4 +481,29 @@ export interface ToastProps {
   toastType?: string;
   isShow: boolean;
   handleShowMessage: (type: boolean) => void;
+}
+
+export interface ShortStoreData {
+  id: number;
+  owner_id: number;
+  name: string;
+  photo_shop: string | null;
+  banner_shop: string | null;
+  description: string;
+  phone_number: string;
+  link: string;
+}
+
+export interface ShortProductData {
+  id: number;
+  product_name: string;
+  price: number;
+  photo: {
+    id: number;
+    product_photo: string;
+    timestamp: string;
+    main: boolean;
+  };
+  product_status: string;
+  is_unique: boolean;
 }

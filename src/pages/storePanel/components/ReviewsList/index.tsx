@@ -1,9 +1,21 @@
 import { ReviewItem } from './ReviewItem';
 import s from './ReviewsList.module.scss';
 
-export const ReviewsList = () => {
+export const ReviewsList = ({ className }: { className?: string }) => {
   return (
-    <ul className={s.review_list}>
+    <ul className={`${s.review_list} ${className}`}>
+      <li className={s.review_item}>
+        <ReviewItem
+          productPhoto=''
+          productName='Каблучка Вишиванка'
+          rating={5}
+          feedback='Неймовірна прикраса, дуже привітний та відповідальний продавець і головне - який красивий та зручний маркетплейс!'
+          userPhoto=''
+          userName='Cтепан Гіга'
+          date='10.02.2023'
+          isVerifiedPurchase
+        />
+      </li>
       <li className={s.review_item}>
         <ReviewItem
           productPhoto=''

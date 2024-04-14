@@ -8,7 +8,7 @@ import s from './StoreManagement.module.scss';
 
 export const StoreManagement = () => {
   const { width } = useWindowDimensions();
-  const storePhoto = useAppSelector((state) => state.storeProfile.shop_photo);
+  const { storePhoto } = useAppSelector((state) => state.storeProfile);
 
   return (
     <section className={s.settings}>

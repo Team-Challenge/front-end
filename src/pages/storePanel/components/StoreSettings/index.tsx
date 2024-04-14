@@ -25,23 +25,26 @@ import { StoreDescription } from './StoreDescription';
 import s from './StoreSettings.module.scss';
 
 export const StoreSettings = () => {
-  const [isSuccessfulChange, setIsSuccessfulChange] = useState<boolean>(false);
   const dispatch = useAppDispatch();
+  const [isSuccessfulChange, setIsSuccessfulChange] = useState<boolean>(false);
   const isModalOpen = useAppSelector(
     (state) => state.modal.dataStoreChangeNotification,
   );
 
   const storeNameDefault = useAppSelector((state) => state.storeProfile.name);
   const storePhoneNumberDefault = useAppSelector(
-    (state) => state.storeProfile.phone_number,
+    (state) => state.storeProfile.phoneNumber,
   );
   const storeDescriptionDefault = useAppSelector(
     (state) => state.storeProfile.description,
   );
-  const storeLinkDefault = useAppSelector((state) => state.storeProfile.link);
+  const storeInstagramLinkDefault = useAppSelector(
+    (state) => state.storeProfile.instagramLink,
+  );
 
-  const instagramLink =
-    storeLinkDefault && transformInstagramLinkToNickname(storeLinkDefault);
+  const instagramNickname =
+    storeInstagramLinkDefault &&
+    transformInstagramLinkToNickname(storeInstagramLinkDefault);
 
   const methods = useForm<StoreSettingsFormProps>({
     mode: 'onChange',
@@ -104,7 +107,7 @@ export const StoreSettings = () => {
       handleResponse(response);
     }
 
-    if (instagramLink !== storeLink && storeLink) {
+    if (instagramNickname !== storeLink && storeLink) {
       const fullInstagramLink = transformNicknameToInstagramLink(data.link);
 
       const response = await dispatch(

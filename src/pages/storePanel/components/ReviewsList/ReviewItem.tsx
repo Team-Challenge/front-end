@@ -1,4 +1,5 @@
 import { Rate } from 'antd';
+import { Icon } from '@iconify/react';
 import { ReviewItemProps } from '@/types';
 import { RatingStarIcon } from '@/components/icons/RatingStarIcon';
 import s from './ReviewsList.module.scss';
@@ -11,6 +12,7 @@ export const ReviewItem = ({
   userPhoto,
   userName,
   date,
+  isVerifiedPurchase,
 }: ReviewItemProps) => {
   return (
     <div className={s.item}>
@@ -36,6 +38,13 @@ export const ReviewItem = ({
         <p className={s.user_name}>{userName}</p>
         <p className={s.date}>{date}</p>
       </div>
+
+      {isVerifiedPurchase && (
+        <div className={s.verified}>
+          <Icon icon='solar:bag-heart-outline' />
+          <p>Підтверджена покупка</p>
+        </div>
+      )}
     </div>
   );
 };
